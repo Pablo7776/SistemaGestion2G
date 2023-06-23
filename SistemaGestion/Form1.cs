@@ -51,10 +51,12 @@ namespace SistemaGestion
         {
             // Agregar productos a la lista
             productos.Add(new TeslaModelX() { Modelo = "fgdf", Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 616 });
+            productos.Add(new TeslaModelX() { Modelo = "fgdf", Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 5000 });
             productos.Add(new TeslaModelS() { Modelo = "fgdf", Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 4400 });
             productos.Add(new TeslaCybertruck() { Modelo = "fgdf", Año = 2023, Color = "Negro", Dueño = "Bob Johnson", UnidadDeUso = 450 });
             productos.Add(new SpaceXStarship() { Modelo = "fgdf", Año = 2023, Color = "Blanco", Dueño = "SpaceX", UnidadDeUso = 1984 });
             productos.Add(new SpaceXFalcon9() { Modelo = "fgdf", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 2400 });
+            productos.Add(new SpaceXFalcon9() { Modelo = "fgdf", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 100 });
 
             // Mostrar los productos en el ListBox
             MostrarProductosEnLista();
@@ -307,7 +309,6 @@ namespace SistemaGestion
             label5 = new Label();
             toolTip = new ToolTip(components);
             dataGridView1 = new DataGridView();
-            spaceXFalcon9BindingSource = new BindingSource(components);
             Modelo = new DataGridViewTextBoxColumn();
             añoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             unidadDeUsoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -316,6 +317,7 @@ namespace SistemaGestion
             autonomiaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             serviceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             cargaRestanteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            spaceXFalcon9BindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -490,10 +492,7 @@ namespace SistemaGestion
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(973, 179);
             dataGridView1.TabIndex = 17;
-            // 
-            // spaceXFalcon9BindingSource
-            // 
-            spaceXFalcon9BindingSource.DataSource = typeof(SpaceXFalcon9);
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Modelo
             // 
@@ -560,6 +559,10 @@ namespace SistemaGestion
             cargaRestanteDataGridViewTextBoxColumn.ReadOnly = true;
             cargaRestanteDataGridViewTextBoxColumn.Width = 150;
             // 
+            // spaceXFalcon9BindingSource
+            // 
+            spaceXFalcon9BindingSource.DataSource = typeof(SpaceXFalcon9);
+            // 
             // Form1
             // 
             ClientSize = new Size(997, 544);
@@ -589,6 +592,11 @@ namespace SistemaGestion
             ((System.ComponentModel.ISupportInitialize)spaceXFalcon9BindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
