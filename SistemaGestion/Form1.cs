@@ -54,7 +54,7 @@ namespace SistemaGestion
             productos.Add(new TeslaModelS() { Modelo = "fgdf", Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 4400 });
             productos.Add(new TeslaCybertruck() { Modelo = "fgdf", Año = 2023, Color = "Negro", Dueño = "Bob Johnson", UnidadDeUso = 450 });
             productos.Add(new SpaceXStarship() { Modelo = "fgdf", Año = 2023, Color = "Blanco", Dueño = "SpaceX", UnidadDeUso = 1984 });
-            productos.Add(new SpaceXFalcon9() { Modelo = "fgdf", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 1000 });
+            productos.Add(new SpaceXFalcon9() { Modelo = "fgdf", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 2400 });
 
             // Mostrar los productos en el ListBox
             MostrarProductosEnLista();

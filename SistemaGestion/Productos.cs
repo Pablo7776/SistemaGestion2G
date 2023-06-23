@@ -67,44 +67,44 @@ namespace SistemaGestion
             for (int i = 1; i < cantidadServices + 1; i++)
             {
                 // Agregar los servicios realizados a la lista
-                string servicio = $"Service {i}: ";
+                string servicio = $"Service {i}: \n";
 
                 // Verificar si se debe realizar el control de cinturones de seguridad
                 if (i * this.Service >= 1000)
                 {
-                    servicio += "(1) "; 
+                    servicio += "   Control Cinturones de Seguridad: OK \n"; 
                 }
                 // Verificar si se debe realizar el control de baterías
                 if (i * this.Service >= 2000)
                 {
-                    servicio += "(2) ";
+                    servicio += "   Control de Baterias: OK \n";
                 }
                 // Verificar si se debe realizar el control de sistema de navegación
                 if (i * this.Service >= 2500)
                 {
-                    servicio += "(4) ";
+                    servicio += "   Control del Sistema de Navegacion: OK \n";
                 }
                 // Verificar si se debe realizar el control de sistema de tracción
                 if (i * this.Service >= 3000)
                 {
-                    servicio += "(5) ";
+                    servicio += "   Control del Sistema de Traccion: OK \n";
                 }
                 // Verificar si se debe realizar el control de motor
                 if (i * this.Service >= 3000)
                 {
-                    servicio += "(6) ";
+                    servicio += "   Control del motor: OK \n";
                 }
 
                 serviciosRealizados.Add(servicio);
             }
 
             // Construir el mensaje de resultado
-            string mensaje = $"Cantidad de services realizados para {this.GetType().Name}: {cantidadServices}\n";
+            string mensaje = $"Cantidad de services realizados para {Modelo}: {cantidadServices}\r\n";
             mensaje += "Servicios Realizados:\n";
 
             for (int i = 0; i < serviciosRealizados.Count; i++)
             {
-                mensaje += serviciosRealizados[i] + "\n";
+                mensaje += serviciosRealizados[i] + "\r\n";
             }
 
             return mensaje;
@@ -177,21 +177,33 @@ namespace SistemaGestion
             int cantidadServices = this.UnidadDeUso / this.Service;
             List<string> serviciosRealizados = new List<string>();
 
+
+            int nav = 500;
+            int servi = this.Service;
             for (int i = 1; i < cantidadServices + 1; i++)
             {
                 // Agregar los servicios realizados a la lista
-                string servicio = $"Service {i}: ";
+                string servicio = $"Service {i}: \n";
 
-                // Verificar si se debe realizar el control del sistema de propulsión
-                if (i * this.Service >= 1000)
+                // el primer service es a los 400, pero no se checkea ni propulsion ni navegacion
+                if (servi < nav)
                 {
-                    servicio += "(3) ";
+                    servicio += "   Control general OK \n";
                 }
+
+                                //// Verificar si se debe realizar el control del sistema de propulsión
+                                //if (i * this.Service >= i * 1000)
+                                //{
+                                //    servicio += "   Control del Sistema de Propulsion: OK  \n";
+                                //}
                 // Verificar si se debe realizar el control del sistema de navegación
-                if (i * this.Service >= 500)
+                if ((servi) >=  nav )
                 {
-                    servicio += "(4) ";
+                    nav = nav + 500; 
+                    servicio += "   Control del Sistema de Navegacion: OK  \n";
                 }
+
+                servi += this.Service;
 
                 serviciosRealizados.Add(servicio);
             }
