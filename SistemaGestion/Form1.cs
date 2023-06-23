@@ -29,6 +29,7 @@ namespace SistemaGestion
         private ToolTip toolTip;
         private Producto producto;
         private DataGridView dataGridView1;
+        private BindingSource spaceXFalcon9BindingSource;
         private DataGridViewTextBoxColumn Modelo;
         private DataGridViewTextBoxColumn añoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn unidadDeUsoDataGridViewTextBoxColumn;
@@ -37,7 +38,6 @@ namespace SistemaGestion
         private DataGridViewTextBoxColumn autonomiaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn serviceDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn cargaRestanteDataGridViewTextBoxColumn;
-        private BindingSource spaceXFalcon9BindingSource;
         private System.ComponentModel.IContainer components;
 
         public Form1()
@@ -50,11 +50,11 @@ namespace SistemaGestion
         private void Form1_Load(object sender, EventArgs e)
         {
             // Agregar productos a la lista
-            productos.Add(new TeslaModelX() { Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 616 });
-            productos.Add(new TeslaModelS() { Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 4400 });
-            productos.Add(new TeslaCybertruck() { Año = 2023, Color = "Negro", Dueño = "Bob Johnson", UnidadDeUso = 450 });
-            productos.Add(new SpaceXStarship() { Año = 2023, Color = "Blanco", Dueño = "SpaceX", UnidadDeUso = 1984 });
-            productos.Add(new SpaceXFalcon9() { Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 1000 });
+            productos.Add(new TeslaModelX() { Modelo = "fgdf", Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 616 });
+            productos.Add(new TeslaModelS() { Modelo = "fgdf", Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 4400 });
+            productos.Add(new TeslaCybertruck() { Modelo = "fgdf", Año = 2023, Color = "Negro", Dueño = "Bob Johnson", UnidadDeUso = 450 });
+            productos.Add(new SpaceXStarship() { Modelo = "fgdf", Año = 2023, Color = "Blanco", Dueño = "SpaceX", UnidadDeUso = 1984 });
+            productos.Add(new SpaceXFalcon9() { Modelo = "fgdf", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 1000 });
 
             // Mostrar los productos en el ListBox
             MostrarProductosEnLista();
@@ -125,6 +125,8 @@ namespace SistemaGestion
             if (nuevoProducto != null)
             {
                 // Asignar los valores ingresados al nuevo producto
+
+                nuevoProducto.Modelo = tipoProducto;
                 nuevoProducto.Año = int.Parse(año);
                 nuevoProducto.Color = color;
                 nuevoProducto.Dueño = dueño;
@@ -150,32 +152,55 @@ namespace SistemaGestion
             textBoxDueño.Clear();
         }
 
-        private void BtnEliminar_Click(object sender, EventArgs e) 
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            // Verificar si hay un producto seleccionado en la lista
-            if ((listBoxProductos.SelectedIndex >= 0) || (dataGridView1.SelectedRows.Count > 0))
+            //    // Verificar si hay un producto seleccionado en la lista
+            //    if ((listBoxProductos.SelectedIndex >= 0) || (dataGridView1.SelectedRows.Count > 0))
+            //    {
+            //        // Eliminar el producto de la lista según el índice seleccionado
+            //        //productos.RemoveAt(listBoxProductos.SelectedIndex);
+
+
+            //        ////////////////////////////////////////////
+            //        ///
+            //        int rowIndex = dataGridView1.SelectedRows[0].Index;
+            //        if (rowIndex != -1)
+            //        {
+            //            productos.RemoveAt(rowIndex);
+
+            //            MessageBox.Show("Tesla eliminado correctamente.");
+            //        }
+            //        ///////////////////////////////////////////
+            //        // Mostrar la lista actualizada de productos
+            //        MostrarProductosEnLista();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Seleccione el producto que desea eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            if (productos.Count > 0)
             {
-                // Eliminar el producto de la lista según el índice seleccionado
-                //productos.RemoveAt(listBoxProductos.SelectedIndex);
-
-
-                ////////////////////////////////////////////
-                ///
-                int rowIndex = dataGridView1.SelectedRows[0].Index;
-                if (rowIndex != -1)
+                if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    productos.RemoveAt(rowIndex);
-
-                    MessageBox.Show("Tesla eliminado correctamente.");
+                    int rowIndex = dataGridView1.SelectedRows[0].Index;
+                    if (rowIndex != -1)
+                    {
+                        productos.RemoveAt(rowIndex);
+                        MostrarProductosEnLista();
+                        MessageBox.Show("Tesla eliminado correctamente.");
+                    }
                 }
-                ///////////////////////////////////////////
-                // Mostrar la lista actualizada de productos
-                MostrarProductosEnLista();
+                else
+                {
+                    MessageBox.Show("Selecciona un Tesla para eliminar.");
+                }
             }
             else
             {
-                MessageBox.Show("Seleccione el producto que desea eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ahun no hay sestlas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
 
         private void BtnTeslaMasKm_Click(object sender, EventArgs e)
@@ -282,8 +307,8 @@ namespace SistemaGestion
             label5 = new Label();
             toolTip = new ToolTip(components);
             dataGridView1 = new DataGridView();
-            Modelo = new DataGridViewTextBoxColumn();
             spaceXFalcon9BindingSource = new BindingSource(components);
+            Modelo = new DataGridViewTextBoxColumn();
             añoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             unidadDeUsoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             colorDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -466,16 +491,17 @@ namespace SistemaGestion
             dataGridView1.Size = new Size(973, 179);
             dataGridView1.TabIndex = 17;
             // 
+            // spaceXFalcon9BindingSource
+            // 
+            spaceXFalcon9BindingSource.DataSource = typeof(SpaceXFalcon9);
+            // 
             // Modelo
             // 
+            Modelo.DataPropertyName = "Modelo";
             Modelo.HeaderText = "Producto";
             Modelo.MinimumWidth = 8;
             Modelo.Name = "Modelo";
             Modelo.Width = 150;
-            // 
-            // spaceXFalcon9BindingSource
-            // 
-            spaceXFalcon9BindingSource.DataSource = typeof(SpaceXFalcon9);
             // 
             // añoDataGridViewTextBoxColumn
             // 

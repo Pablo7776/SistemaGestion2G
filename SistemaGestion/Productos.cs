@@ -10,6 +10,7 @@ namespace SistemaGestion
     public abstract class Producto
     {
         // Propiedades comunes a todos los productos
+        public string Modelo { get; set; }
         public int Año { get; set; }
         public int UnidadDeUso { get; set; }
         public string? Color { get; set; }
