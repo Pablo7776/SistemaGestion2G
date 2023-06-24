@@ -505,12 +505,13 @@ namespace SistemaGestion
             // dataGridView1
             // 
             dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Modelo, añoDataGridViewTextBoxColumn, unidadDeUsoDataGridViewTextBoxColumn, colorDataGridViewTextBoxColumn, dueñoDataGridViewTextBoxColumn, autonomiaDataGridViewTextBoxColumn, serviceDataGridViewTextBoxColumn, cargaRestanteDataGridViewTextBoxColumn });
             dataGridView1.DataSource = spaceXFalcon9BindingSource;
             dataGridView1.Location = new Point(12, 260);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowHeadersWidth = 20;
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ShowCellErrors = false;
@@ -524,7 +525,6 @@ namespace SistemaGestion
             Modelo.HeaderText = "Producto";
             Modelo.MinimumWidth = 8;
             Modelo.Name = "Modelo";
-            Modelo.Width = 150;
             // 
             // añoDataGridViewTextBoxColumn
             // 
@@ -532,7 +532,6 @@ namespace SistemaGestion
             añoDataGridViewTextBoxColumn.HeaderText = "Año";
             añoDataGridViewTextBoxColumn.MinimumWidth = 8;
             añoDataGridViewTextBoxColumn.Name = "añoDataGridViewTextBoxColumn";
-            añoDataGridViewTextBoxColumn.Width = 150;
             // 
             // unidadDeUsoDataGridViewTextBoxColumn
             // 
@@ -540,7 +539,6 @@ namespace SistemaGestion
             unidadDeUsoDataGridViewTextBoxColumn.HeaderText = "UnidadDeUso";
             unidadDeUsoDataGridViewTextBoxColumn.MinimumWidth = 8;
             unidadDeUsoDataGridViewTextBoxColumn.Name = "unidadDeUsoDataGridViewTextBoxColumn";
-            unidadDeUsoDataGridViewTextBoxColumn.Width = 150;
             // 
             // colorDataGridViewTextBoxColumn
             // 
@@ -548,7 +546,6 @@ namespace SistemaGestion
             colorDataGridViewTextBoxColumn.HeaderText = "Color";
             colorDataGridViewTextBoxColumn.MinimumWidth = 8;
             colorDataGridViewTextBoxColumn.Name = "colorDataGridViewTextBoxColumn";
-            colorDataGridViewTextBoxColumn.Width = 150;
             // 
             // dueñoDataGridViewTextBoxColumn
             // 
@@ -556,7 +553,6 @@ namespace SistemaGestion
             dueñoDataGridViewTextBoxColumn.HeaderText = "Dueño";
             dueñoDataGridViewTextBoxColumn.MinimumWidth = 8;
             dueñoDataGridViewTextBoxColumn.Name = "dueñoDataGridViewTextBoxColumn";
-            dueñoDataGridViewTextBoxColumn.Width = 150;
             // 
             // autonomiaDataGridViewTextBoxColumn
             // 
@@ -564,7 +560,6 @@ namespace SistemaGestion
             autonomiaDataGridViewTextBoxColumn.HeaderText = "Autonomia";
             autonomiaDataGridViewTextBoxColumn.MinimumWidth = 8;
             autonomiaDataGridViewTextBoxColumn.Name = "autonomiaDataGridViewTextBoxColumn";
-            autonomiaDataGridViewTextBoxColumn.Width = 150;
             // 
             // serviceDataGridViewTextBoxColumn
             // 
@@ -572,7 +567,6 @@ namespace SistemaGestion
             serviceDataGridViewTextBoxColumn.HeaderText = "Service";
             serviceDataGridViewTextBoxColumn.MinimumWidth = 8;
             serviceDataGridViewTextBoxColumn.Name = "serviceDataGridViewTextBoxColumn";
-            serviceDataGridViewTextBoxColumn.Width = 150;
             // 
             // cargaRestanteDataGridViewTextBoxColumn
             // 
@@ -581,7 +575,6 @@ namespace SistemaGestion
             cargaRestanteDataGridViewTextBoxColumn.MinimumWidth = 8;
             cargaRestanteDataGridViewTextBoxColumn.Name = "cargaRestanteDataGridViewTextBoxColumn";
             cargaRestanteDataGridViewTextBoxColumn.ReadOnly = true;
-            cargaRestanteDataGridViewTextBoxColumn.Width = 150;
             // 
             // spaceXFalcon9BindingSource
             // 
