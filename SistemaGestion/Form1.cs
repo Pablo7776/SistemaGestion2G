@@ -18,7 +18,6 @@ namespace SistemaGestion
         private Label label3;
         private Label label4;
         private Label label5;
-        private ListBox listBoxProductos;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private List<Producto> productos;
@@ -50,13 +49,13 @@ namespace SistemaGestion
         private void Form1_Load(object sender, EventArgs e)
         {
             // Agregar productos a la lista
-            productos.Add(new TeslaModelX() { Modelo = "fgdf", Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 616 });
-            productos.Add(new TeslaModelX() { Modelo = "fgdf", Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 5000 });
-            productos.Add(new TeslaModelS() { Modelo = "fgdf", Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 4400 });
-            productos.Add(new TeslaCybertruck() { Modelo = "fgdf", Año = 2023, Color = "Negro", Dueño = "Bob Johnson", UnidadDeUso = 450 });
-            productos.Add(new SpaceXStarship() { Modelo = "fgdf", Año = 2023, Color = "Blanco", Dueño = "SpaceX", UnidadDeUso = 1984 });
-            productos.Add(new SpaceXFalcon9() { Modelo = "fgdf", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 2400 });
-            productos.Add(new SpaceXFalcon9() { Modelo = "fgdf", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 100 });
+            productos.Add(new TeslaModelX() { Modelo = "Model X", Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 616 });
+            productos.Add(new TeslaModelX() { Modelo = "Model X", Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 5000 });
+            productos.Add(new TeslaModelS() { Modelo = "Model S", Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 4400 });
+            productos.Add(new TeslaCybertruck() { Modelo = "Cybertruck", Año = 2023, Color = "Negro", Dueño = "Bob Johnson", UnidadDeUso = 450 });
+            productos.Add(new SpaceXStarship() { Modelo = "Starship", Año = 2023, Color = "Blanco", Dueño = "SpaceX", UnidadDeUso = 1984 });
+            productos.Add(new SpaceXFalcon9() { Modelo = "Falcon 9", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 2400 });
+            productos.Add(new SpaceXFalcon9() { Modelo = "Falcon 9", Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 100 });
 
             // Mostrar los productos en el ListBox
             MostrarProductosEnLista();
@@ -72,17 +71,20 @@ namespace SistemaGestion
 
         private void MostrarProductosEnLista()
         {
-            listBoxProductos.Items.Clear();
+            //listBoxProductos.Items.Clear();
 
-            foreach (Producto producto in productos)
-            {
-                listBoxProductos.Items.Add(producto.ObtenerInformacion());
-            }
+            //foreach (Producto producto in productos)
+            //{
+            //    listBoxProductos.Items.Add(producto.ObtenerInformacion());
+            //}
 
 
             //grilla!!!!!!!!!!
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = productos;
+
+            ////Para que no tenga ninguna fila marcada por defecto
+            dataGridView1.ClearSelection();
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -216,17 +218,18 @@ namespace SistemaGestion
             if (teslaConMasKm != null)
             {
                 // Buscar el índice del producto en la ListBox
-                int indice = listBoxProductos.Items.IndexOf(teslaConMasKm.ObtenerInformacion());
+                //int indice = listBoxProductos.Items.IndexOf(teslaConMasKm.ObtenerInformacion());
+                //int indice = dataGridView1.SelectedRows[teslaConMasKm].Index;
 
                 // Verificar si se encontró el producto
-                if (indice >= 0)
-                {
-                    // Seleccionar el producto y resaltarlo en la ListBox
-                    listBoxProductos.SetSelected(indice, true);
-                    MessageBox.Show(teslaConMasKm.ObtenerInformacion());
-                    // Quitar la selección del producto en el ListBox
-                    listBoxProductos.ClearSelected();
-                }
+                //if (indice >= 0)
+                //{
+                // Seleccionar el producto y resaltarlo en la ListBox
+                //listBoxProductos.SetSelected(indice, true);
+                MessageBox.Show(teslaConMasKm.ObtenerInformacion());
+                // Quitar la selección del producto en el ListBox
+                //listBoxProductos.ClearSelected();
+                //}
             }
             else
             {
@@ -234,37 +237,67 @@ namespace SistemaGestion
             }
         }
 
+        //private void LstProductos_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    int selectedIndex = listBoxProductos.SelectedIndex;
+        //    if (selectedIndex >= 0 && selectedIndex < productos.Count)
+        //    {
+        //        producto = productos[selectedIndex];
+        //    }
+        //}
         private void LstProductos_MouseClick(object sender, MouseEventArgs e)
         {
-            int selectedIndex = listBoxProductos.SelectedIndex;
+            int selectedIndex = dataGridView1.SelectedRows[0].Index;
             if (selectedIndex >= 0 && selectedIndex < productos.Count)
             {
+
                 producto = productos[selectedIndex];
             }
         }
 
         private void BtnEscanear_Click(object sender, EventArgs e)
         {
-            if (listBoxProductos.SelectedIndex == -1) // Verificar si no se ha seleccionado ningún elemento en la ListBox
+            //if (listBoxProductos.SelectedIndex == -1) // Verificar si no se ha seleccionado ningún elemento en la ListBox
+            //{
+            //    MessageBox.Show("Seleccione un producto antes de realizar el escaneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //else
+            //{
+            //    if (producto != null)
+            //    {
+            //        // Obtener el producto seleccionado de la ListBox
+            //        producto.RealizarEscaneo();
+            //        // Quitar la selección del producto en el ListBox
+            //        listBoxProductos.ClearSelected();
+            //    }
+            //    else
+            //    {
+            //        // Manejar el caso cuando el objeto es nulo
+            //        MessageBox.Show("Seleccionar el producto de la lista");
+            //    }
+            //}
+
+            //if (dataGridView1.SelectedRows[0].Index == -1) // Verificar si no se ha seleccionado ningún elemento en la ListBox
+            //{
+            //    MessageBox.Show("Seleccione un producto antes de realizar el escaneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //else
+            //{
+            if (producto != null)
             {
-                MessageBox.Show("Seleccione un producto antes de realizar el escaneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // Obtener el producto seleccionado de la ListBox
+                producto.RealizarEscaneo();
+                // Quitar la selección del producto en el ListBox
+                //listBoxProductos.ClearSelected();
             }
             else
             {
-                if (producto != null)
-                {
-                    // Obtener el producto seleccionado de la ListBox
-                    producto.RealizarEscaneo();
-                    // Quitar la selección del producto en el ListBox
-                    listBoxProductos.ClearSelected();
-                }
-                else
-                {
-                    // Manejar el caso cuando el objeto es nulo
-                    MessageBox.Show("Seleccionar el producto de la lista");
-                }
+                // Manejar el caso cuando el objeto es nulo
+                MessageBox.Show("Seleccionar el producto de la lista");
             }
+            // }
         }
 
         private Producto ObtenerTeslaConMasKilometros()
@@ -290,7 +323,6 @@ namespace SistemaGestion
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            listBoxProductos = new ListBox();
             btnAgregar = new Button();
             btnEliminar = new Button();
             pictureBox1 = new PictureBox();
@@ -323,16 +355,6 @@ namespace SistemaGestion
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spaceXFalcon9BindingSource).BeginInit();
             SuspendLayout();
-            // 
-            // listBoxProductos
-            // 
-            listBoxProductos.FormattingEnabled = true;
-            listBoxProductos.ItemHeight = 25;
-            listBoxProductos.Location = new Point(12, 253);
-            listBoxProductos.Name = "listBoxProductos";
-            listBoxProductos.Size = new Size(973, 54);
-            listBoxProductos.TabIndex = 0;
-            listBoxProductos.MouseClick += LstProductos_MouseClick;
             // 
             // btnAgregar
             // 
@@ -486,13 +508,15 @@ namespace SistemaGestion
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Modelo, añoDataGridViewTextBoxColumn, unidadDeUsoDataGridViewTextBoxColumn, colorDataGridViewTextBoxColumn, dueñoDataGridViewTextBoxColumn, autonomiaDataGridViewTextBoxColumn, serviceDataGridViewTextBoxColumn, cargaRestanteDataGridViewTextBoxColumn });
             dataGridView1.DataSource = spaceXFalcon9BindingSource;
-            dataGridView1.Location = new Point(12, 322);
+            dataGridView1.Location = new Point(12, 260);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(973, 179);
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.ShowCellErrors = false;
+            dataGridView1.Size = new Size(973, 241);
             dataGridView1.TabIndex = 17;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.MouseClick += LstProductos_MouseClick;
             // 
             // Modelo
             // 
@@ -583,7 +607,6 @@ namespace SistemaGestion
             Controls.Add(pictureBox1);
             Controls.Add(btnEliminar);
             Controls.Add(btnAgregar);
-            Controls.Add(listBoxProductos);
             Name = "Form1";
             Text = "Sistema de Gestión SpaceX - Tesla";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -592,11 +615,6 @@ namespace SistemaGestion
             ((System.ComponentModel.ISupportInitialize)spaceXFalcon9BindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
